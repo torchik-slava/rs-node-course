@@ -22,7 +22,7 @@ router
   .route('/:id')
   .get(async (req, res) => {
     const board = await boardsService.getById(req.params.id);
-    if (!board) res.status(404).send('User not found');
+    if (!board) return res.status(404).send('Board not found');
     res.json(Board.toResponse(board));
   })
   .put(async (req, res) => {

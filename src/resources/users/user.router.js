@@ -23,6 +23,7 @@ router
   .route('/:id')
   .get(async (req, res) => {
     const user = await usersService.getById(req.params.id);
+    if (!user) return res.status(404).send('User not found');
     res.json(User.toResponse(user));
   })
   .put(async (req, res) => {
