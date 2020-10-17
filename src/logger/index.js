@@ -15,6 +15,7 @@ const logger = winston.createLogger({
       handleExceptions: true,
       handleRejections: true,
       format: winston.format.combine(
+        winston.format.timestamp(),
         winston.format.uncolorize(),
         winston.format.json()
       )
