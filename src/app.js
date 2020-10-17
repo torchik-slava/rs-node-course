@@ -5,6 +5,7 @@ const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
+const logger = require('./logger');
 const reqLogMiddleware = require('./middlewares/reqLogMiddleware');
 
 const app = express();
@@ -27,5 +28,16 @@ app.use(reqLogMiddleware);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 boardRouter.use('/:boardId/tasks', taskRouter);
+
+process
+  .on('uncaughtException', err => {
+    logger.error(`Uncaught Exception: ${err.message}`);
+  })
+  .on('unhandledRejection', err => {
+    logger.error(`Unhandled Rejection: ${err.message}`);
+  });
+
+// throw Error('Oops!');
+// Promise.reject(Error('Oops!'));
 
 module.exports = app;

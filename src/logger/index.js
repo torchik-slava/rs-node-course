@@ -12,6 +12,8 @@ const logger = winston.createLogger({
     new winston.transports.File({
       filename: path.resolve(__dirname, 'error.log'),
       level: 'error',
+      handleExceptions: true,
+      handleRejections: true,
       format: winston.format.combine(
         winston.format.uncolorize(),
         winston.format.json()
