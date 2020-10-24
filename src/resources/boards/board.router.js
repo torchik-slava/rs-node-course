@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Board = require('./board.model');
+const Board = require('./board.mongoose.model');
 const boardsService = require('./board.services');
 
 router
