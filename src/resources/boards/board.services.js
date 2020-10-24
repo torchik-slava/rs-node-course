@@ -1,4 +1,4 @@
-const boardsRepo = require('./board.memory.repository');
+const boardsRepo = require('./board.mongoose.repository');
 const tasksService = require('../tasks/task.service');
 
 const getAll = () => boardsRepo.getAll();
@@ -10,9 +10,8 @@ const create = board => boardsRepo.create(board);
 const updateById = (id, obj) => boardsRepo.updateById(id, obj);
 
 const deleteById = async id => {
-  const isDeleted = await boardsRepo.deleteById(id);
-  if (isDeleted) tasksService.deleteAll(id);
-  return isDeleted;
+  await boardsRepo.deleteById(id);
+  await tasksService.deleteAll(id);
 };
 
 module.exports = { getAll, getById, create, updateById, deleteById };
