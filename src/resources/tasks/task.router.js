@@ -1,5 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
-const Task = require('./task.model');
+const Task = require('./task.mongoose.model');
 const tasksService = require('./task.service');
 
 router

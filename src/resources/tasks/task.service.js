@@ -1,4 +1,4 @@
-const tasksRepo = require('./task.memory.repository');
+const tasksRepo = require('./task.mongoose.repository');
 
 const getAll = boardId => tasksRepo.getAll(boardId);
 
@@ -12,7 +12,7 @@ const deleteById = (boardId, id) => tasksRepo.deleteById(boardId, id);
 
 const deleteAll = boardId => tasksRepo.deleteAll(boardId);
 
-const unassignAll = boardId => tasksRepo.unassignAll(boardId);
+const unassignAll = userId => tasksRepo.unassignAll(userId);
 
 module.exports = {
   getAll,
