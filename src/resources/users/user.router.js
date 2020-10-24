@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('./user.model');
+const User = require('./user.mongoose.model');
 const usersService = require('./user.service');
 
 router
