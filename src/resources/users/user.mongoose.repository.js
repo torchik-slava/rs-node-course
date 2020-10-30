@@ -4,6 +4,8 @@ const getAll = async () => User.find({});
 
 const getById = async id => User.findById(id);
 
+const getByLogin = async login => User.findOne({ login });
+
 const create = async user => User.create(user);
 
 const updateById = async (id, { name, login, password }) => {
@@ -14,4 +16,11 @@ const updateById = async (id, { name, login, password }) => {
 
 const deleteById = async id => User.deleteOne({ _id: id });
 
-module.exports = { getAll, getById, create, updateById, deleteById };
+module.exports = {
+  getAll,
+  getById,
+  getByLogin,
+  create,
+  updateById,
+  deleteById
+};

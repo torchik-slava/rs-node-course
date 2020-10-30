@@ -7,6 +7,10 @@ module.exports = (err, req, res, next) => {
         res.status(404).send('Not found');
         logger.error(err.message);
         break;
+      case 'Forbidden':
+        res.status(403).send('Incorrect login or password');
+        logger.error(err.message);
+        break;
       default:
         res.status(500).send('Internal server error');
         logger.error('Internal server error! Something went wrong!');
