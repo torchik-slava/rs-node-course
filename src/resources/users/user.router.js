@@ -14,13 +14,11 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const user = await usersService.create(
-        new User({
-          name: req.body.name,
-          login: req.body.login,
-          password: req.body.password
-        })
-      );
+      const user = await usersService.create({
+        name: req.body.name,
+        login: req.body.login,
+        password: req.body.password
+      });
       res.json(User.toResponse(user));
     } catch (error) {
       return next(error);

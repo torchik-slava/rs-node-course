@@ -14,16 +14,14 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const task = await tasksService.create(
-        new Task({
-          boardId: req.params.boardId,
-          title: req.body.title,
-          order: req.body.order,
-          description: req.body.description,
-          userId: req.body.userId,
-          columnId: req.body.columnId
-        })
-      );
+      const task = await tasksService.create({
+        boardId: req.params.boardId,
+        title: req.body.title,
+        order: req.body.order,
+        description: req.body.description,
+        userId: req.body.userId,
+        columnId: req.body.columnId
+      });
       res.json(Task.toResponse(task));
     } catch (error) {
       return next(error);
