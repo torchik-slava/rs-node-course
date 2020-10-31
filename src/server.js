@@ -10,18 +10,16 @@ async function run() {
       useFindAndModify: false,
       useCreateIndex: true
     });
-    mongoose.connection.db.dropDatabase();
+    await mongoose.connection.db.dropDatabase();
     console.log('Connected to mongo DB');
-
+    await mongoose.connection.db.collection('users').insertOne({
+      name: 'admin',
+      login: 'admin',
+      password: '$2b$10$UQKYyr/VewBQVfP9Q7fbTuSY/REQLC3lI8y9FVix0ABEhz8lhHZoO'
+    });
+    console.log('Add admin');
     app.listen(PORT, () =>
-      console.log(`App is running on http://localhost:${PORT}
-      !!!!
-      Инфа для проверяющих:
-      Старая реализация из проекта не удалялась! Просто изменены пути к файлам с новой реализацией.
-      Новую реализацию моделей смотреть в файлах с окончанием .mongoose.model.js, a не .model.js
-      Новую реализацию репозиториев смотреть в файлах с окончанием .mongoose.repository.js
-      Не перепутайте) Спасибо)
-      !!!!`)
+      console.log(`App is running on http://localhost:${PORT}`)
     );
   } catch (err) {
     console.log(err);
