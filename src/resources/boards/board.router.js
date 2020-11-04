@@ -14,12 +14,10 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const board = await boardsService.create(
-        new Board({
-          title: req.body.title,
-          columns: req.body.columns
-        })
-      );
+      const board = await boardsService.create({
+        title: req.body.title,
+        columns: req.body.columns
+      });
       res.json(Board.toResponse(board));
     } catch (error) {
       return next(error);
